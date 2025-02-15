@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.app",
+  "appName": "Hospital Locator",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}
