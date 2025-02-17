@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from 'firebase/auth'; 
 import { useNavigate } from 'react-router-dom';
 
-// Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyAVXESjp-PUvN0e77Ne-sIF_oKytDmL8jM",
   authDomain: "hospital-locator-9a4e8.firebaseapp.com",
@@ -24,14 +24,10 @@ function LoginPage() {
     const provider = new GoogleAuthProvider();
 
     try {
-      // Use popup for desktop, fallback to redirect for mobile
-      if (window.innerWidth < 768) { // Assuming mobile device detection
-        await signInWithRedirect(auth, provider);
-      } else {
-        const result = await signInWithPopup(auth, provider);
-        console.log("User logged in:", result.user);
-        navigate('/home');
-      }
+      const result = await signInWithPopup(auth, provider);
+      console.log("User logged in:", result.user);
+      navigate('/home');
+      
     } catch (error) {
       console.error('Error logging in with Google:', error);
     }

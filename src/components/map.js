@@ -6,7 +6,7 @@ function Map({ latitude, longitude }) {
   const [hospitals, setHospitals] = useState([]);
   const position = [latitude, longitude];
 
-  // Memoize fetchHospitals to prevent unnecessary re-creation of the function
+
   const fetchHospitals = useCallback(async () => {
     const overpassQuery = `
       [out:json];
@@ -27,14 +27,13 @@ function Map({ latitude, longitude }) {
     } catch (error) {
       console.error('Error fetching hospitals:', error);
     }
-  }, [latitude, longitude]); // Recreate fetchHospitals when latitude or longitude changes
+  }, [latitude, longitude]);
 
-  // Call fetchHospitals when latitude and longitude change
   useEffect(() => {
     if (latitude && longitude) {
       fetchHospitals();
     }
-  }, [latitude, longitude, fetchHospitals]); // Include fetchHospitals in the dependency array
+  }, [latitude, longitude, fetchHospitals]); 
 
   return (
     <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '400px', width: '100%' }}>
